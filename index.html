@@ -1,0 +1,127 @@
+<html>
+<head>	
+	<title>http://www.mySource.com</title>
+
+	<!-- Include jquery -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	
+	<!--css -->
+	<link href="styles/mySource.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+	
+	<div class="header">
+		<img src="images/stigs-logo.JPG" alt="mySource Logo" class="logo">
+	</div>
+
+	<div id="page">
+	
+		<div id="leftbar">
+		</div>
+		
+		<div id="rightbar">
+		</div>
+		
+		<div id="maincontent">
+			<input type="text" id="myInput" onkeyup="searchFilter()" placeholder="Search for information (e.g. chest workouts)" title="Find relevant information">
+
+			<ul id="myUL">
+			  <li><a href="#">Chest Workouts #chest #fitness #lifting</a></li>
+			  <li><a href="#">Cardio and Endurance #running #highintensity #biking</a></li>
+
+			  <li><a href="#">World War II #WWII #history #20thcentury</a></li>
+			  <li><a href="#">Good writing practices #grammar #englishwriting</a></li>
+
+			  <li><a href="#">Building a PC #pcbuilding #computers</a></li>
+			  <li><a href="#">Vladimir Putin #russia #politics</a></li>
+			  <li><a href="#">Universities with best MBA programs #college #business</a></li>
+			</ul>
+			
+			<div class="profile-header">
+				<a class="lightbox" href="#profilepic">
+					<img src="images/identity-box.png"/>
+				</a> 
+				<div class="lightbox-target" id="profilepic">
+					<img src="images/dave.png"/>
+						<a class="lightbox-close" href="#"></a>
+				</div>
+			</div>
+			
+			<div class="student-info">
+				<strong>West Chester University</strong><br/>
+				Pre-Physcial Therapy</br>
+				Student
+			</div>
+			
+			<div class="trust-rating">
+				Trust rating: <input type="text" style="border-width: 0px; color: khaki; font-weight: bold; font-size: 18px;" id="userTrust" value="0%" readonly=""/>
+	
+				<form>
+					<input type="button" id="userTrust" onclick="incrementUserTrust()" value="Trust" />
+					<input type="button" id="userTrust" onclick="decrementUserTrust()" value="Distrust" />
+				</form>
+			</div>
+			
+		</div>
+			<div id="clearingdiv"></div>
+	</div>
+			
+	
+<script>
+	function searchFilter() {
+		var input, filter, ul, li, a, i, txtValue;
+		input = document.getElementById("myInput");
+		filter = input.value.toUpperCase();
+		ul = document.getElementById("myUL");
+		li = ul.getElementsByTagName("li");
+		
+		if(input.value.length == 0){
+			ul.style.display = "none";
+			return;
+		} else {
+			ul.style.display = "block"
+		}
+		
+		for (i = 0; i < li.length; i++) {
+			a = li[i].getElementsByTagName("a")[0];
+			txtValue = a.textContent || a.innerText;
+			if (txtValue.toUpperCase().indexOf(filter) > -1) {
+				li[i].style.display = "";
+			} else {
+				li[i].style.display = "none";
+			}
+		}
+	}
+	
+	function hideList() {
+		input = document.getElementById("myInput");
+		ul = document.getElementById("myUL")
+		if(input.value.length == 0) {
+			ul.style.display = "none";
+			return;
+		} else {
+			ul.style.display = "block"
+		}
+	}
+	
+	window.onload = hideList;
+	
+	function incrementUserTrust() {
+	
+		var value = parseInt(document.getElementById('userTrust').value, 10);
+		value = isNaN(value) ? 0 : value;
+		value = value + 5;
+		document.getElementById('userTrust').value = value;
+}
+
+	function decrementUserTrust() {
+	
+		var value = parseInt(document.getElementById('userTrust').value, 10);
+		value = isNaN(value) ? 0 : value;
+		value = value - 5;
+		document.getElementById('userTrust').value = value;
+}
+
+</script>
+</body>
+</html>
